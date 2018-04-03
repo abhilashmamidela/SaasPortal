@@ -72,7 +72,7 @@
                     <!-- The Submit and CLear Buttons -->
                     <v-layout row-wrap>
                       <v-flex mb-3>
-                            <v-btn class="button" :class="{active: disable_btn}" :disabled="disable_btn" @click.prevent="submitSignUp" top outline type="submit" large style="border-radius: 4px">SUBMIT</v-btn>
+                            <v-btn class="button" :class="{active: disable_btn}" :disabled="disable_btn" @click.prevent="submitSignUp"  top outline type="submit" large style="border-radius: 4px">SUBMIT</v-btn>
                         </v-flex>
                     </v-layout>
                   </v-container>
@@ -118,7 +118,24 @@
                     <!-- The Submit and CLear Buttons -->
                     <v-layout row wrap>
                       <v-flex mb-3>
-                        <v-btn class="button" :class="{active: disable_btn}" :disabled="disable_btn" @click.prevent="submitLogin" top outline type="submit" large style="border-radius: 4px">SUBMIT</v-btn>
+                        <v-btn class="button" :class="{active: disable_btn}" :disabled="disable_btn"   @click.prevent="submitLogin" top outline type="submit" large style="border-radius: 4px">SUBMIT</v-btn>
+                        
+                        <!-- snackbar -->
+                        
+                        <v-snackbar
+                        :top="y === 'top'"
+                         v-model="snackbar"
+
+                        >
+
+                        {{text}}
+                        <v-btn flat color="pink" @click.native="snackbar = false">Close</v-btn>
+
+                          
+                        
+                        </v-snackbar>
+
+            
                       </v-flex>
                   <!-- <v-btn v-on:click="buttonClick">TRY</v-btn> -->
                                     <!-- <v-btn v-on:click="buttonClicky">TRY</v-btn> -->
@@ -162,6 +179,13 @@ export default {
       password: '',
       confpassword: '',
       confpwd_msg: '',
+      // snackbar
+      snackbar:false,
+        y: 'top',
+        x: null,
+        mode: '',
+        timeout: 6000,
+        text: 'Hello, I\'m a snackbar'
     }),
 
     watch: {
@@ -284,8 +308,12 @@ export default {
         submitLogin () {
 
           localStorage.setItem('jwt',JSON.stringify({"email":this.email}))
-          this.$router.push("/user/profile")
-``
+          // this.$router.go("/user/profile")
+          var that = this;
+          this.$router.push("/user/profile",function(){
+            that.$router.go()
+          })
+
 
 
 

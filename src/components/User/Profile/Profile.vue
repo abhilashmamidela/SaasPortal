@@ -1,12 +1,14 @@
 <template>
-  <v-app>
-		
-        
-
-
+  <v-app>    
+      
+<!-- </div> -->
 		  
   <v-container class="con1">
+
 		
+
+
+		<!-- profile page -->
   <h1 class="profile1" style="text-align:left">Profile</h1>
 		
 	
@@ -117,7 +119,6 @@
 
 <script>
 import axios from 'axios';
-
 export default {
 	data(){
 		return {
@@ -131,7 +132,7 @@ export default {
 			conpassword:'',
 			validx:true,
 			includeFiles: true,
-			enabled: false
+			enabled: false,
 		}
 	},
 
@@ -234,6 +235,11 @@ export default {
 .profile1{
 	padding-left: 33px;
 }
+
+
+
+
+
 
 
 

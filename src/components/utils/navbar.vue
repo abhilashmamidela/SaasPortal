@@ -66,7 +66,7 @@
     </v-navigation-drawer>
    
    <main style="width:100%">
-     <router-view></router-view>
+     <router-view ></router-view>
    </main>
    
       </v-layout>
@@ -105,7 +105,10 @@ export default {
   },methods:{
     logout(){
       localStorage.removeItem('jwt');
-      this.$router.push("/")
+      var that = this;
+      this.$router.push("/",function(){
+            that.$router.go()
+      })
     }
   }
 }
